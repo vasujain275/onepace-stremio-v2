@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+require('dotenv').config()
 
 const { serveHTTP, publishToCentral } = require("stremio-addon-sdk");
 
