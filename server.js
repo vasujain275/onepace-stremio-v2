@@ -9,4 +9,4 @@ addon.addonBuilder().then((result)=>{
     serveHTTP(result, { port:  process.env.PORT || 3000 });
 })
 
-// publishToCentral("https://my-addon.awesome/manifest.json")
+publishToCentral("https://6b8ba440e405-onepace-stremio-v2.baby-beamup.club/mainfest.json")
