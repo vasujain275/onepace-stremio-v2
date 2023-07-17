@@ -1,7 +1,6 @@
 const { addonBuilder, serveHTTP, getRouter, publishToCentral } = require('stremio-addon-sdk')
 let dataObj = {};
 
-
 function getSeriesCatalog(catalogName) {
 	let catalog;
 
@@ -36,6 +35,7 @@ function getSeriesStreams(id) {
     const name = episode.resolution || "";
         const obj = {
             "infoHash": infoHash,
+			"fileIdx": episode.part,
             "name": name
         };
         streams.push(obj);
@@ -74,7 +74,6 @@ function addonSetup() {
 
 	builder.defineCatalogHandler(async ({ type, id }) => {
 		let results;
-
 		switch (type) {
 			case "series":
 				results = getSeriesCatalog(id)
@@ -137,7 +136,6 @@ function addonSetup() {
 
 	builder.defineStreamHandler(async ({ type, id }) => {
 		let results;
-
 		switch (type) {
 			case 'series':
 				results = getSeriesStreams(id)
@@ -147,6 +145,7 @@ function addonSetup() {
 				break
 		}
 		const streams = await results;
+		
 		return ({ streams });
 	})
 
