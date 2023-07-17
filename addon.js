@@ -49,7 +49,7 @@ function addonSetup() {
 		"name": "OnePaceStremioV2",
 		"description": "A Better Way to Watch One Pace on Stremio. Go to Discover -> Series -> Watch One Pace. Recommended: Set your default subtitle size to 160% before watching.",
 		"logo": "https://i.pinimg.com/originals/66/4a/b8/664ab89e0d4d4aba2b8cae854bde8a0d.png",
-		"version": "1.0.0",
+		"version": "1.1.0",
 		"resources": [
 			"catalog",
 			{
@@ -113,15 +113,20 @@ function addonSetup() {
 			}
 			let season = 0;
 			let epdata = dataObj.data.episodes;
+
 			for (let i = 0; i < dataObj.data.episodes.length; i++) {
+				let eptitle = epdata[i].invariant_title;
 				if (epdata[i].part === 1) {
 					season++;
+				}
+				if(epdata[i].released_at===null) {
+					eptitle = `Unreleased, Anime Ep. ${epdata[i].anime_episodes}`;
 				}
 				let ep = {
 					"season": season,
 					"episode": epdata[i].part,
 					"id": epdata[i].id,
-					"title": epdata[i].invariant_title,
+					"title": eptitle,
 					"released": epdata[i].released_at,
 					"anime_episodes": epdata[i].anime_episodes
 				};
