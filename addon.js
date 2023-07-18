@@ -67,7 +67,13 @@ function addonSetup() {
 			{
 				"type": "series",
 				"id": "top",
-				"name": "Watch One Pace"
+				"name": "Watch One Pace",
+				"extra": [
+					{
+						"name": "search",
+						"isRequired": false
+					}
+				]
 			}
 		]
 	}
