@@ -33,9 +33,10 @@ function getSeriesStreams(id) {
 	if (episode.downloads) {
     const infoHash = episode.downloads[0].uri.split("=")[1] || "";
     const name = episode.resolution || "";
+	let part = episode.part - 1;
         const obj = {
             "infoHash": infoHash,
-			"fileIdx": episode.part,
+			"fileIdx": part,
             "name": name
         };
         streams.push(obj);
